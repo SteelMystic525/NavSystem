@@ -1,9 +1,7 @@
-"""
-aruco_detection_node.py
-=======================
-ROS 2 node that detects ArUco markers (DICT_6X6_250) via a depth camera,
-estimates 6-DoF pose for each detected marker, and publishes world-frame
-coordinates using TF2 transforms.
+"""ROS 2 node for ArUco marker detection and world-frame coordinate publishing.
+
+Detects ArUco markers (DICT_6X6_250) via a depth camera, estimates 6-DoF pose
+for each detected marker, and publishes world-frame coordinates using TF2 transforms.
 
 Topics
 ------
@@ -34,6 +32,7 @@ class ArucoDetectionNode(Node):
     """Detects ArUco markers and publishes their world-frame coordinates."""
 
     def __init__(self):
+        """Initialise subscriptions, publisher, TF2 listener, and processing timer."""
         super().__init__('aruco_detection_node')
 
         self.bridge = CvBridge()
@@ -183,11 +182,13 @@ class ArucoDetectionNode(Node):
         return rotation @ tvec + translation
 
     def destroy_node(self) -> None:
+        """Close OpenCV windows and cleanly shut down the node."""
         cv2.destroyAllWindows()
         super().destroy_node()
 
 
 def main(args=None) -> None:
+    """Initialise rclpy, spin the detection node, and shut down cleanly."""
     rclpy.init(args=args)
     node = ArucoDetectionNode()
     try:
