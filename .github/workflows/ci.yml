@@ -1,0 +1,62 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    name: Lint (flake8 + pep257)
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install linting tools
+        run: pip install flake8 pydocstyle
+
+      - name: Run flake8
+        run: flake8 src/aruco_marker_detection --max-line-length=100
+
+      - name: Run pydocstyle
+        run: pydocstyle src/aruco_marker_detection/aruco_marker_detection
+
+  build:
+    name: Build & Test (ROS 2 Humble)
+    runs-on: ubuntu-22.04
+    container:
+      image: ros:humble
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: ros2_ws/src/NavSystem
+
+      - name: Install dependencies
+        run: |
+          apt-get update
+          apt-get install -y \
+            python3-colcon-common-extensions \
+            ros-humble-cv-bridge \
+            ros-humble-tf2-ros \
+            python3-opencv \
+            python3-scipy
+
+      - name: Build workspace
+        working-directory: ros2_ws
+        run: |
+          . /opt/ros/humble/setup.bash
+          colcon build --packages-select aruco_marker_detection
+
+      - name: Run tests
+        working-directory: ros2_ws
+        run: |
+          . /opt/ros/humble/setup.bash
+          colcon test --packages-select aruco_marker_detection
+          colcon test-result --verbose

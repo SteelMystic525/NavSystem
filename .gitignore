@@ -1,0 +1,80 @@
+# ──────────────────────────────────────────────
+# ROS 2 / colcon
+# ──────────────────────────────────────────────
+build/
+install/
+log/
+.colcon/
+*.colcon_build.rc
+
+# ──────────────────────────────────────────────
+# Python
+# ──────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+
+# ──────────────────────────────────────────────
+# C / C++
+# ──────────────────────────────────────────────
+*.o
+*.a
+*.so
+*.so.*
+*.dylib
+*.out
+*.exe
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.cmake
+!*Config.cmake
+!*Config-version.cmake
+
+# ──────────────────────────────────────────────
+# Editors
+# ──────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ──────────────────────────────────────────────
+# Virtual environments
+# ──────────────────────────────────────────────
+.venv/
+venv/
+env/
+
+# ──────────────────────────────────────────────
+# Gazebo / simulation artefacts
+# ──────────────────────────────────────────────
+*.bag
+*.db3
+*.bag.active
+gazebo_ros_state/
+
+# ──────────────────────────────────────────────
+# Misc
+# ──────────────────────────────────────────────
+*.log
+*.tmp
+*.bak

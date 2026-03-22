@@ -1,0 +1,48 @@
+name: Bug report
+description: Something is not working as expected
+labels: [bug]
+body:
+  - type: input
+    id: ros_version
+    attributes:
+      label: ROS 2 distribution
+      placeholder: e.g. Humble
+    validations:
+      required: true
+
+  - type: input
+    id: python_version
+    attributes:
+      label: Python version
+      placeholder: e.g. 3.10.12
+    validations:
+      required: true
+
+  - type: input
+    id: opencv_version
+    attributes:
+      label: OpenCV version
+      placeholder: e.g. 4.8.0
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug description
+      description: What happened? What did you expect?
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      render: shell
