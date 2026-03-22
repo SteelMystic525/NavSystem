@@ -62,5 +62,9 @@ jobs:
         working-directory: ros2_ws
         run: |
           source /opt/ros/humble/setup.bash
-          colcon test --packages-select aruco_marker_detection
+          # Run tests from the install space so colcon does not scan
+          # any stale build/lib copies of the source
+          colcon test \
+            --packages-select aruco_marker_detection \
+            --pytest-args --ignore=build
           colcon test-result --verbose
