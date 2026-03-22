@@ -15,7 +15,7 @@ setup(
     zip_safe=True,
     maintainer='rishi',
     maintainer_email='suryanstripathi05@gmail.com',
-    description='ROS 2 node for ArUco marker detection with TF2-based world-frame coordinate publishing',
+    description='ROS 2 node for ArUco marker detection with TF2 world-frame coordinate publishing',
     license='Apache-2.0',
     tests_require=['pytest'],
     entry_points={
