@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [main]
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   lint:
     name: Lint (flake8 + pep257)
@@ -51,12 +55,12 @@ jobs:
       - name: Build workspace
         working-directory: ros2_ws
         run: |
-          . /opt/ros/humble/setup.bash
+          source /opt/ros/humble/setup.bash
           colcon build --packages-select aruco_marker_detection
 
       - name: Run tests
         working-directory: ros2_ws
         run: |
-          . /opt/ros/humble/setup.bash
+          source /opt/ros/humble/setup.bash
           colcon test --packages-select aruco_marker_detection
           colcon test-result --verbose
