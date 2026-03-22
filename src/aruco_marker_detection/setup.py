@@ -1,3 +1,5 @@
+"""Package setup for aruco_marker_detection."""
+
 from setuptools import find_packages, setup
 
 package_name = 'aruco_marker_detection'
